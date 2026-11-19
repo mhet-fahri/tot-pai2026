@@ -59,9 +59,6 @@ export const AdminAuthGate = () => {
                 required
               />
             </div>
-            <p className="text-[11px] text-slate-400 mt-1">
-              Kunci default demo: <code className="bg-slate-100 px-1 py-0.5 rounded text-slate-700 font-mono">tot-admin-2026</code>
-            </p>
           </div>
 
           <Button

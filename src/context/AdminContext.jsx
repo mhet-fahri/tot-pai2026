@@ -19,7 +19,7 @@ export const AdminProvider = ({ children }) => {
     setIsLoading(true);
     setError(null);
     try {
-      const validKey = import.meta.env.VITE_ADMIN_SECRET_KEY || 'tot-admin-2026';
+      const validKey = import.meta.env.VITE_ADMIN_SECRET_KEY || 'tot-sulthan-2026';
       
       // Validasi lokal atau ke backend Apps Script
       if (key === validKey || !import.meta.env.VITE_APPS_SCRIPT_URL) {

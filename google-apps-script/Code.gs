@@ -18,7 +18,7 @@
 
 // Konfigurasi Standar
 var CONFIG = {
-  ADMIN_SECRET_KEY: "tot-admin-2026", // Default key (dapat dioverride di Project Settings Script Properties)
+  ADMIN_SECRET_KEY: "tot-sulthan-2026", // Default key (dapat dioverride di Project Settings Script Properties)
   ROOT_FOLDER_NAME: "Pelatihan_Guru_PAI_2026",
   SHEETS: {
     PARTICIPANTS: "Participants",
