@@ -9,7 +9,7 @@ export const DayTabs = ({ activeDay, onSelectDay }) => {
       <div className="px-2 py-1 flex items-center justify-between border-b border-slate-100/80 pb-2.5">
         <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 flex items-center gap-1.5">
           <Calendar className="w-3.5 h-3.5 text-emerald-600" />
-          Agenda 5 Hari
+          Agenda Pelatihan
         </span>
         <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">
           ToT PAI

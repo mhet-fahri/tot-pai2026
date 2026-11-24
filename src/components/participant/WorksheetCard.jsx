@@ -1,6 +1,6 @@
 import React from 'react';
 import { Badge } from '../common/Badge';
-import { Download, Upload, ArrowUpRight, MessageSquare, FileCheck } from 'lucide-react';
+import { Download, Upload, ArrowUpRight, MessageSquare, FileCheck, UserCheck, Users } from 'lucide-react';
 import { formatIndonesianDate } from '../../utils/dateHelpers';
 
 export const WorksheetCard = ({ worksheet, submission, onOpenUpload }) => {
@@ -21,7 +21,25 @@ export const WorksheetCard = ({ worksheet, submission, onOpenUpload }) => {
         <h3 className="font-bold text-slate-900 text-base leading-snug">
           {worksheet.title}
         </h3>
-        <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed font-normal">
+
+        {(worksheet.narasumber || worksheet.fasilitator) && (
+          <div className="mt-2.5 p-2.5 rounded-xl bg-slate-50/80 border border-slate-100 text-[11px] space-y-1">
+            {worksheet.narasumber && (
+              <p className="text-emerald-900 font-semibold flex items-center gap-1.5">
+                <UserCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span>Narasumber: {worksheet.narasumber}</span>
+              </p>
+            )}
+            {worksheet.fasilitator && (
+              <p className="text-slate-600 flex items-start gap-1.5">
+                <Users className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
+                <span>Fasilitator: {worksheet.fasilitator}</span>
+              </p>
+            )}
+          </div>
+        )}
+
+        <p className="text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed font-normal">
           {worksheet.instructions}
         </p>
 

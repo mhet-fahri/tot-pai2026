@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock } from 'lucide-react';
+import { Clock, UserCheck, Users, School } from 'lucide-react';
 
 export const AgendaTimeline = ({ agenda, dayTitle }) => {
   if (!agenda || agenda.length === 0) return null;
@@ -22,7 +22,7 @@ export const AgendaTimeline = ({ agenda, dayTitle }) => {
         </div>
       </div>
 
-      <div className="space-y-3 relative before:absolute before:inset-0 before:left-3 before:w-0.5 before:bg-emerald-200/60 max-h-[520px] overflow-y-auto pr-1">
+      <div className="space-y-3 relative before:absolute before:inset-0 before:left-3 before:w-0.5 before:bg-emerald-200/60 max-h-[560px] overflow-y-auto pr-1">
         {agenda.map((item, index) => {
           const isBreak = item.type === 'break';
           const isTest = item.type === 'test';
@@ -50,18 +50,57 @@ export const AgendaTimeline = ({ agenda, dayTitle }) => {
 
               <div className={`flex-1 p-2.5 rounded-xl bg-white/70 hover:bg-white border border-slate-100 transition-all shadow-[0_2px_8px_rgba(0,0,0,0.02)] ${borderAccent}`}>
                 <div className="flex items-center justify-between gap-1 mb-1">
-                  <span className="font-bold text-[11px] text-emerald-700 font-mono">
-                    {item.time}
-                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-bold text-[11px] text-emerald-700 font-mono">
+                      {item.time}
+                    </span>
+                    {item.jp && (
+                      <span className="text-[10px] font-semibold text-slate-400">
+                        ({item.jp} JP)
+                      </span>
+                    )}
+                  </div>
                   {item.worksheetId && (
                     <span className="text-[9px] font-extrabold px-1.5 py-0.2 rounded bg-amber-100 text-amber-800">
                       Tugas LK
                     </span>
                   )}
                 </div>
+
                 <h4 className={`text-xs ${isBreak ? 'font-normal text-slate-500 italic' : 'font-semibold text-slate-800'} leading-snug`}>
                   {item.title}
                 </h4>
+
+                {/* Info Narasumber & Fasilitator */}
+                {item.narasumber && (
+                  <div className="mt-1.5 pt-1.5 border-t border-slate-100 text-[11px] space-y-0.5">
+                    <p className="text-emerald-900 font-medium flex items-center gap-1">
+                      <UserCheck className="w-3 h-3 text-emerald-600 shrink-0" />
+                      <span><strong>Narsum:</strong> {item.narasumber}</span>
+                    </p>
+                    {item.fasilitator && item.fasilitator.length > 0 && (
+                      <p className="text-slate-500 flex items-start gap-1">
+                        <Users className="w-3 h-3 text-slate-400 shrink-0 mt-0.5" />
+                        <span><strong>Fasilitator:</strong> {item.fasilitator.join(', ')}</span>
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {/* Khusus Microteaching Tim Penguji */}
+                {item.timPenguji && (
+                  <div className="mt-2 pt-1.5 border-t border-slate-100 text-[10.5px] space-y-1 text-slate-600">
+                    <p className="font-semibold text-teal-800 flex items-center gap-1">
+                      <School className="w-3 h-3 text-teal-600" />
+                      Tim Penguji & Asesor Microteaching:
+                    </p>
+                    <div className="pl-3 space-y-0.5 text-[10px]">
+                      <p><strong>Kelas 1:</strong> {item.timPenguji.kelas1.join(', ')}</p>
+                      <p><strong>Kelas 2:</strong> {item.timPenguji.kelas2.join(', ')}</p>
+                      <p className="text-slate-400 italic">Didampingi tim fasilitator ToT PAI</p>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           );

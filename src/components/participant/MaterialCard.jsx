@@ -1,5 +1,5 @@
 import React from 'react';
-import { Presentation, ArrowUpRight, Download } from 'lucide-react';
+import { Presentation, ArrowUpRight, UserCheck } from 'lucide-react';
 
 export const MaterialCard = ({ material }) => {
   return (
@@ -16,7 +16,15 @@ export const MaterialCard = ({ material }) => {
         <h3 className="font-bold text-slate-900 text-base leading-snug group-hover:text-emerald-700 transition-colors">
           {material.title}
         </h3>
-        <p className="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed line-clamp-2 font-normal">
+        
+        {material.narasumber && (
+          <div className="mt-2 flex items-center gap-1.5 text-xs font-semibold text-emerald-800 bg-emerald-50/60 px-2.5 py-1 rounded-lg w-fit">
+            <UserCheck className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Narasumber: {material.narasumber}</span>
+          </div>
+        )}
+
+        <p className="text-xs sm:text-sm text-slate-600 mt-2.5 leading-relaxed line-clamp-2 font-normal">
           {material.description}
         </p>
       </div>
