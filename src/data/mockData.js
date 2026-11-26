@@ -56,7 +56,7 @@ export const SCHEDULE_DAYS = [
         type: "session",
         materialId: "MAT-H1-03",
         worksheetId: "LK-H1-02",
-        narasumber: "Dr. Yanti Herlanti, M.Pd.",
+        narasumber: "Prof. Muhammad Zuhdi, M.Ed., Ph.D.",
         fasilitator: ["Bobi Erno Rusadi, M.Pd.I", "Afif Faizin, M.Pd."]
       }
     ]
@@ -280,7 +280,7 @@ export const INITIAL_MATERIALS = [
     day: 1,
     title: "Perspektif Ekoteologi dalam Pendidikan Agama Islam",
     description: "Slide integrasi nilai-nilai pelestarian lingkungan hidup berbasis ajaran teologi Islam ke dalam proses pembelajaran.",
-    narasumber: "Dr. Yanti Herlanti, M.Pd.",
+    narasumber: "Prof. Muhammad Zuhdi, M.Ed., Ph.D.",
     file_type: "PPTX",
     file_size: "9.8 MB",
     url: "https://docs.google.com/presentation/d/placeholder-ekoteologi",
@@ -410,7 +410,7 @@ export const INITIAL_WORKSHEETS = [
     day: 1,
     title: "LK 1.2: Matriks Desain Pembelajaran Berperspektif Ekoteologi",
     instructions: "Susun skenario integrasi pelestarian lingkungan berbasis ajaran Islam ke dalam rancangan pembelajaran PAI.",
-    narasumber: "Dr. Yanti Herlanti, M.Pd.",
+    narasumber: "Prof. Muhammad Zuhdi, M.Ed., Ph.D.",
     fasilitator: "Bobi Erno Rusadi, M.Pd.I & Afif Faizin, M.Pd.",
     template_url: "https://docs.google.com/document/d/placeholder-template-ekoteologi",
     deadline: "Hari Ke-1 • 22.00 WIB"
