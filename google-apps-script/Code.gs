@@ -96,8 +96,7 @@ function doPost(e) {
 }
 
 /**
- * Inisialisasi Otomatis Sheet & Header Kolom
- * Memastikan tabel langsung siap pakai tanpa perlu buat kolom manual satu per satu.
+ * Inisialisasi Otomatis Sheet & Header Kolom + Populate Data Awal
  */
 function ensureSheetsInitialized() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
@@ -116,6 +115,9 @@ function ensureSheetsInitialized() {
     matSheet = ss.insertSheet(CONFIG.SHEETS.MATERIALS);
     matSheet.appendRow(["material_id", "day", "title", "description", "file_type", "file_size", "url", "order_index"]);
     formatHeader(matSheet, "#059669");
+    populateInitialMaterials(matSheet);
+  } else if (matSheet.getLastRow() < 2) {
+    populateInitialMaterials(matSheet);
   }
 
   // 3. Sheet Worksheets (Pretest & Lembar Kerja)
@@ -124,6 +126,9 @@ function ensureSheetsInitialized() {
     wsSheet = ss.insertSheet(CONFIG.SHEETS.WORKSHEETS);
     wsSheet.appendRow(["worksheet_id", "day", "title", "instructions", "template_url", "deadline"]);
     formatHeader(wsSheet, "#059669");
+    populateInitialWorksheets(wsSheet);
+  } else if (wsSheet.getLastRow() < 2) {
+    populateInitialWorksheets(wsSheet);
   }
 
   // 4. Sheet Submissions (Pengumpulan Tugas)
@@ -136,6 +141,43 @@ function ensureSheetsInitialized() {
       "original_filename", "submitted_at", "status", "score", "feedback"
     ]);
     formatHeader(subSheet, "#059669");
+  }
+}
+
+function populateInitialMaterials(sheet) {
+  var initial = [
+    ["MAT-H1-01", 1, "Orientasi Sertifikasi BNSP", "Slide pedoman teknis persyaratan asesmen uji kompetensi kerja skema BNSP.", "PPTX", "10.5 MB", "https://docs.google.com/presentation/d/placeholder-bnsp", 1],
+    ["MAT-H1-02", 1, "Kebijakan Direktorat PAI Kementerian Agama RI", "Slide arah kebijakan penguatan kompetensi guru, moderasi beragama.", "PPTX", "14.2 MB", "https://docs.google.com/presentation/d/placeholder-kemenag", 2],
+    ["MAT-H1-03", 1, "Perspektif Ekoteologi dalam Pendidikan Agama Islam", "Slide integrasi nilai kelestarian lingkungan berbasis ajaran Islam.", "PPTX", "9.8 MB", "https://docs.google.com/presentation/d/placeholder-ekoteologi", 3],
+    ["MAT-H2-01", 2, "Kurikulum Berbasis Cinta melalui Pembelajaran Mendalam", "Slide pendekatan pedagogis holistik berbasis kasih sayang.", "PPTX", "11.5 MB", "https://docs.google.com/presentation/d/placeholder-kurikulum-cinta", 1],
+    ["MAT-H2-02", 2, "Praktik Pedagogis STREAM", "Slide model integrasi kurikulum multidisiplin STREAM.", "PPTX", "16.4 MB", "https://docs.google.com/presentation/d/placeholder-stream", 2],
+    ["MAT-H2-03", 2, "Pemanfaatan Koding & AI dalam Media Pembelajaran Digital", "Slide rekayasa prompt AI generatif dan koding untuk learners agency.", "PPTX", "18.1 MB", "https://docs.google.com/presentation/d/placeholder-ai-pembelajaran", 3],
+    ["MAT-H2-04", 2, "Perencanaan Pembelajaran: Analisis Karakteristik Murid", "Slide diagnostik gaya belajar, minat, dan kesiapan murid.", "PPTX", "8.7 MB", "https://docs.google.com/presentation/d/placeholder-karakteristik-murid", 4],
+    ["MAT-H2-05", 2, "Perencanaan Pembelajaran: Materi Esensial Rumpun PAI", "Slide bedah materi esensial Al-Qur'an & Hadis, Akidah, Akhlak, Fikih, SKI.", "PPTX", "22.3 MB", "https://docs.google.com/presentation/d/placeholder-materi-esensial", 5],
+    ["MAT-H3-01", 3, "Analisis CP, TP, ATP dari Materi Esensial PAI", "Slide penurunan CP ke TP & Alur Tujuan Pembelajaran (ATP).", "PPTX", "15.6 MB", "https://docs.google.com/presentation/d/placeholder-cp-tp-atp", 1],
+    ["MAT-H3-02", 3, "Asesmen Pembelajaran: Materi Esensial Rumpun PAI", "Slide panduan perancangan asesmen autentik HOTS.", "PPTX", "13.4 MB", "https://docs.google.com/presentation/d/placeholder-asesmen-pai", 2],
+    ["MAT-H3-03", 3, "Berbagi Praktik Baik (Best Practice)", "Slide inspirasi implementasi strategi pengajaran inovatif.", "PPTX", "19.2 MB", "https://docs.google.com/presentation/d/placeholder-best-practice", 3],
+    ["MAT-H4-01", 4, "Pedoman Teknis Pengumuman Sertifikasi & Penutupan", "Slide ketentuan pasca-ToT dan rekapitulasi nilai kompetensi.", "PPTX", "7.1 MB", "https://docs.google.com/presentation/d/placeholder-sertifikasi", 1]
+  ];
+  for (var i = 0; i < initial.length; i++) {
+    sheet.appendRow(initial[i]);
+  }
+}
+
+function populateInitialWorksheets(sheet) {
+  var initial = [
+    ["LK-H1-01", 1, "LK 1.1: Pretest dan Dinamika Kelompok", "Kerjakan asesmen awal instrumen pretest pemahaman kompetensi.", "https://exampro-7xj.pages.dev/", "Hari Ke-1 • 18.30 WIB"],
+    ["LK-H1-02", 1, "LK 1.2: Matriks Desain Pembelajaran Berperspektif Ekoteologi", "Susun skenario integrasi pelestarian lingkungan berbasis ajaran Islam.", "https://docs.google.com/document/d/placeholder-template-ekoteologi", "Hari Ke-1 • 22.00 WIB"],
+    ["LK-H2-01", 2, "LK 2.1: Praktik Pedagogis STREAM dalam Pembelajaran PAI", "Rancang sintaks dan lembar aktivitas belajar murid model STREAM.", "https://docs.google.com/document/d/placeholder-template-stream", "Hari Ke-2 • 12.30 WIB"],
+    ["LK-H2-02", 2, "LK 2.2: Media Pembelajaran Digital Berbantuan Koding & AI", "Unggah dokumen prompt AI terstruktur atau prototipe media digital.", "https://docs.google.com/document/d/placeholder-template-ai", "Hari Ke-2 • 15.30 WIB"],
+    ["LK-H2-03", 2, "LK 2.3: Analisis Profil & Karakteristik Belajar Murid", "Lakukan pemetaan kebutuhan belajar dan gaya belajar peserta didik.", "https://docs.google.com/document/d/placeholder-template-karakteristik", "Hari Ke-2 • 18.00 WIB"],
+    ["LK-H3-01", 3, "LK 3.1: Matriks Penurunan CP - TP - ATP Materi Esensial PAI", "Turunkan CP ke dalam rumusan TP dan alur logis ATP kurikulum merdeka.", "https://docs.google.com/document/d/placeholder-template-cp-tp-atp", "Hari Ke-3 • 12.30 WIB"],
+    ["LK-H3-02", 3, "LK 3.2: Perancangan Instrumen Asesmen Autentik PAI", "Susun rubrik asesmen, kisi-kisi soal penalaran kontekstual HOTS.", "https://docs.google.com/document/d/placeholder-template-asesmen", "Hari Ke-3 • 15.30 WIB"],
+    ["LK-H3-03", 3, "LK 3.3: Post Test dan Refleksi Akhir Pelatihan", "Isi evaluasi post test pemahaman kompetensi dan refleksi mandiri.", "https://docs.google.com/document/d/placeholder-template-posttest", "Hari Ke-3 • 21.30 WIB"],
+    ["LK-H4-01", 4, "LK 4.1: Rencana Pembelajaran (Modul Ajar) Microteaching", "Unggah Modul Ajar / RPP lengkap yang siap disimulasikan pada sesi praktik Microteaching.", "https://docs.google.com/document/d/placeholder-template-microteaching", "Hari Ke-4 • 08.00 WIB"]
+  ];
+  for (var i = 0; i < initial.length; i++) {
+    sheet.appendRow(initial[i]);
   }
 }
 
