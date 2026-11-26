@@ -61,9 +61,20 @@ export const AgendaTimeline = ({ agenda, dayTitle }) => {
                     )}
                   </div>
                   {item.worksheetId && (
-                    <span className="text-[9px] font-extrabold px-1.5 py-0.2 rounded bg-amber-100 text-amber-800">
-                      Tugas LK
-                    </span>
+                    item.worksheetId === 'LK-H1-01' ? (
+                      <a
+                        href="https://exampro-7xj.pages.dev/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-amber-500 hover:bg-amber-600 text-white transition flex items-center gap-0.5 shadow-sm"
+                      >
+                        Buka Pretest ↗
+                      </a>
+                    ) : (
+                      <span className="text-[9px] font-extrabold px-1.5 py-0.2 rounded bg-amber-100 text-amber-800">
+                        Tugas LK
+                      </span>
+                    )
                   )}
                 </div>
 

@@ -402,7 +402,7 @@ export const INITIAL_WORKSHEETS = [
     instructions: "Kerjakan asesmen awal instrumen pretest pemahaman kompetensi dan lembar komitmen dinamika kelompok.",
     narasumber: "Fajar Pinastia, M.Pd.",
     fasilitator: "Afif Faizin, M.Pd. & Reza Ruhbani Amarulloh, M.Pd.",
-    template_url: "https://docs.google.com/document/d/placeholder-template-pretest",
+    template_url: "https://exampro-7xj.pages.dev/",
     deadline: "Hari Ke-1 • 18.30 WIB"
   },
   {

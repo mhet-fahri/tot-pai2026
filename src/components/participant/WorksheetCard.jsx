@@ -78,10 +78,19 @@ export const WorksheetCard = ({ worksheet, submission, onOpenUpload }) => {
           href={worksheet.template_url}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-600 hover:text-emerald-800 bg-white hover:bg-emerald-50/50 border border-slate-200 transition"
+          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-emerald-800 hover:text-emerald-950 bg-emerald-50 hover:bg-emerald-100/80 border border-emerald-200/80 transition shadow-sm"
         >
-          <Download className="w-3.5 h-3.5 text-slate-400" />
-          <span>Unduh Template</span>
+          {worksheet.worksheet_id === 'LK-H1-01' ? (
+            <>
+              <ArrowUpRight className="w-3.5 h-3.5 text-emerald-600" />
+              <span>Mulai Pretest Online</span>
+            </>
+          ) : (
+            <>
+              <Download className="w-3.5 h-3.5 text-slate-500" />
+              <span>Unduh Template LK</span>
+            </>
+          )}
         </a>
 
         <button
