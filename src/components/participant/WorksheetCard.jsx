@@ -85,6 +85,11 @@ export const WorksheetCard = ({ worksheet, submission, onOpenUpload }) => {
               <ArrowUpRight className="w-3.5 h-3.5 text-emerald-600" />
               <span>Mulai Pretest Online</span>
             </>
+          ) : worksheet.worksheet_id === 'LK-H3-03' ? (
+            <>
+              <ArrowUpRight className="w-3.5 h-3.5 text-emerald-600" />
+              <span>Mulai Post Test Online</span>
+            </>
           ) : (
             <>
               <Download className="w-3.5 h-3.5 text-slate-500" />

@@ -132,6 +132,7 @@ export const ParticipantDashboard = () => {
             <AgendaTimeline
               agenda={currentDayConfig.agenda}
               dayTitle={currentDayConfig.title}
+              worksheets={worksheets}
             />
           </aside>
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Clock, UserCheck, Users, School } from 'lucide-react';
 
-export const AgendaTimeline = ({ agenda, dayTitle }) => {
+export const AgendaTimeline = ({ agenda, dayTitle, worksheets = [] }) => {
   if (!agenda || agenda.length === 0) return null;
 
   return (
@@ -60,22 +60,38 @@ export const AgendaTimeline = ({ agenda, dayTitle }) => {
                       </span>
                     )}
                   </div>
-                  {item.worksheetId && (
-                    item.worksheetId === 'LK-H1-01' ? (
-                      <a
-                        href="https://exampro-7xj.pages.dev/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-amber-500 hover:bg-amber-600 text-white transition flex items-center gap-0.5 shadow-sm"
-                      >
-                        Buka Pretest ↗
-                      </a>
-                    ) : (
+                  {item.worksheetId && (() => {
+                    const linkedWs = worksheets.find(w => w.worksheet_id === item.worksheetId);
+                    if (item.worksheetId === 'LK-H1-01') {
+                      return (
+                        <a
+                          href={linkedWs?.template_url || 'https://exampro-7xj.pages.dev/'}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-amber-500 hover:bg-amber-600 text-white transition flex items-center gap-0.5 shadow-sm"
+                        >
+                          Buka Pretest ↗
+                        </a>
+                      );
+                    }
+                    if (item.worksheetId === 'LK-H3-03') {
+                      return (
+                        <a
+                          href={linkedWs?.template_url || '#'}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-amber-500 hover:bg-amber-600 text-white transition flex items-center gap-0.5 shadow-sm"
+                        >
+                          Buka Post Test ↗
+                        </a>
+                      );
+                    }
+                    return (
                       <span className="text-[9px] font-extrabold px-1.5 py-0.2 rounded bg-amber-100 text-amber-800">
                         Tugas LK
                       </span>
-                    )
-                  )}
+                    );
+                  })()}
                 </div>
 
                 <h4 className={`text-xs ${isBreak ? 'font-normal text-slate-500 italic' : 'font-semibold text-slate-800'} leading-snug`}>
