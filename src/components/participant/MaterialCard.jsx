@@ -1,7 +1,11 @@
 import React from 'react';
-import { Presentation, ArrowUpRight, UserCheck } from 'lucide-react';
+import { Presentation, ArrowUpRight, UserCheck, FileText } from 'lucide-react';
+
+const CPL_TERBARU_URL = 'https://drive.google.com/file/d/1p-JOi0030WErZewDluue7z7DuFYjukBe/view?usp=sharing';
 
 export const MaterialCard = ({ material }) => {
+  const cplUrl = material.cpl_url || (material.material_id === 'MAT-H3-01' ? CPL_TERBARU_URL : null);
+
   return (
     <article className="dynamic-glass-card rounded-[22px] p-5 sm:p-6 flex flex-col justify-between group">
       <div>
@@ -29,19 +33,33 @@ export const MaterialCard = ({ material }) => {
         </p>
       </div>
 
-      <div className="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-between">
+      <div className="mt-5 pt-3.5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2">
         <span className="text-[11px] font-semibold text-slate-400 flex items-center gap-1">
           Microsoft PowerPoint
         </span>
-        <a
-          href={material.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-600 hover:text-white transition-all shadow-sm"
-        >
-          <span>Buka PPT</span>
-          <ArrowUpRight className="w-3.5 h-3.5" />
-        </a>
+        <div className="flex flex-wrap items-center gap-2">
+          {cplUrl && (
+            <a
+              href={cplUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-amber-800 bg-amber-50 hover:bg-amber-600 hover:text-white border border-amber-200/80 transition-all shadow-sm"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span>CPL Terbaru</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+          )}
+          <a
+            href={material.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-600 hover:text-white transition-all shadow-sm"
+          >
+            <span>Buka PPT</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
+        </div>
       </div>
     </article>
   );

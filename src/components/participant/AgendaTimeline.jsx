@@ -60,38 +60,50 @@ export const AgendaTimeline = ({ agenda, dayTitle, worksheets = [] }) => {
                       </span>
                     )}
                   </div>
-                  {item.worksheetId && (() => {
-                    const linkedWs = worksheets.find(w => w.worksheet_id === item.worksheetId);
-                    if (item.worksheetId === 'LK-H1-01') {
+                  <div className="flex items-center gap-1">
+                    {item.materialId === 'MAT-H3-01' && (
+                      <a
+                        href="https://drive.google.com/file/d/1p-JOi0030WErZewDluue7z7DuFYjukBe/view?usp=sharing"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-emerald-600 hover:bg-emerald-700 text-white transition flex items-center gap-0.5 shadow-sm"
+                      >
+                        CPL Terbaru ↗
+                      </a>
+                    )}
+                    {item.worksheetId && (() => {
+                      const linkedWs = worksheets.find(w => w.worksheet_id === item.worksheetId);
+                      if (item.worksheetId === 'LK-H1-01') {
+                        return (
+                          <a
+                            href={linkedWs?.template_url || 'https://exampro-7xj.pages.dev/'}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-amber-500 hover:bg-amber-600 text-white transition flex items-center gap-0.5 shadow-sm"
+                          >
+                            Buka Pretest ↗
+                          </a>
+                        );
+                      }
+                      if (item.worksheetId === 'LK-H3-03') {
+                        return (
+                          <a
+                            href={linkedWs?.template_url || '#'}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-amber-500 hover:bg-amber-600 text-white transition flex items-center gap-0.5 shadow-sm"
+                          >
+                            Buka Post Test ↗
+                          </a>
+                        );
+                      }
                       return (
-                        <a
-                          href={linkedWs?.template_url || 'https://exampro-7xj.pages.dev/'}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-amber-500 hover:bg-amber-600 text-white transition flex items-center gap-0.5 shadow-sm"
-                        >
-                          Buka Pretest ↗
-                        </a>
+                        <span className="text-[9px] font-extrabold px-1.5 py-0.2 rounded bg-amber-100 text-amber-800">
+                          Tugas LK
+                        </span>
                       );
-                    }
-                    if (item.worksheetId === 'LK-H3-03') {
-                      return (
-                        <a
-                          href={linkedWs?.template_url || '#'}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-amber-500 hover:bg-amber-600 text-white transition flex items-center gap-0.5 shadow-sm"
-                        >
-                          Buka Post Test ↗
-                        </a>
-                      );
-                    }
-                    return (
-                      <span className="text-[9px] font-extrabold px-1.5 py-0.2 rounded bg-amber-100 text-amber-800">
-                        Tugas LK
-                      </span>
-                    );
-                  })()}
+                    })()}
+                  </div>
                 </div>
 
                 <h4 className={`text-xs ${isBreak ? 'font-normal text-slate-500 italic' : 'font-semibold text-slate-800'} leading-snug`}>

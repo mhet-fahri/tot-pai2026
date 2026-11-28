@@ -354,6 +354,7 @@ export const INITIAL_MATERIALS = [
     file_type: "PPTX",
     file_size: "15.6 MB",
     url: "https://docs.google.com/presentation/d/placeholder-cp-tp-atp",
+    cpl_url: "https://drive.google.com/file/d/1p-JOi0030WErZewDluue7z7DuFYjukBe/view?usp=sharing",
     order_index: 1
   },
   {
